@@ -1,13 +1,10 @@
 # Yolov5 + Deep Sort with PyTorch
 
-[![HitCount](http://hits.dwyl.com/{mikel-brostrom}/{Yolov5_DeepSort_Pytorch}.svg)](http://hits.dwyl.com/{mikel-brostrom}/{Yolov5_DeepSort_Pytorch})
-
-
-![](Town.gif)
-
 ## Introduction
 
 This repository contains a moded version of PyTorch YOLOv5 (https://github.com/ultralytics/yolov5). It filters out every detection that is not a person. The detections of persons are then passed to a Deep Sort algorithm (https://github.com/ZQPei/deep_sort_pytorch) which tracks the persons. The reason behind the fact that it just tracks persons is that the deep association metric is trained on a person ONLY datatset.
+
+For more detailed information about the algorithms and their corresponding lisences used in this project access their official github implementations.
 
 ## Description
 
@@ -24,23 +21,22 @@ Python 3.7 or later with all requirements.txt dependencies installed, including 
 
 `pip install -U -r requirements.txt`
 
-All dependencies are included in the associated docker images. Docker requirements are: 
-- `nvidia-docker`
-- Nvidia Driver Version >= 440.44
 
 ## Before you run the tracker
 
-Github block pushes of files larger than 100 MB (https://help.github.com/en/github/managing-large-files/conditions-for-large-files). Hence you need to download two different weights: the ones for yolo and the ones for deep sort
+Github block pushes of files larger than 100 MB. Hence you need to download two different weights: the ones for yolo and the ones for deep sort.
 
-- download the yolov5 weight from https://drive.google.com/drive/folders/1Drs_Aiu7xx6S-ix95f9kNsA6ueKRpN2J. Place the downlaoded `.pt` file under `yolov5/weights/`
-- download the deep sort weights from https://drive.google.com/drive/folders/1xhG0kRH1EX5B9_Iz8gQJb7UNnn_riXi6. Place ckpt.t7 file under`deep_sort/deep/checkpoint/`
+- download the yolov5 weight from https://drive.google.com/drive/folders/1Drs_Aiu7xx6S-ix95f9kNsA6ueKRpN2J and place the downlaoded `.pt` file under `yolov5/weights/`
+- download the deep sort weights from https://drive.google.com/drive/folders/1xhG0kRH1EX5B9_Iz8gQJb7UNnn_riXi6. Place ckpt.t7 file under`deep_sort/deep_sort/deep/checkpoint/`
 
 ## Tracking
 
 `track.py` runs tracking on any video source:
 
+example:  
+
 ```bash
-python3 track.py --source ...
+python3 track.py --weights yolov5/weights/yolov5x.pt --source ...
 ```
 
 - Video:  `--source file.mp4`
@@ -50,5 +46,5 @@ python3 track.py --source ...
 
 ## Other information
 
-For more detailed information about the algorithms and their corresponding lisences used in this project access their official github implementations.
+Further work: Predict trajectories for tracked objects.
 
